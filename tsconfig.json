@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "target": "es5",
+      "module": "commonjs",
+      "declaration": true,
+      "outDir": "./dist",
+      "strict": false,
+      "lib": ["es2017", "dom"],
+      
+    },
+    "include": [
+      "index.ts",
+      "src/**/*"
+    ]
+  }
+  
