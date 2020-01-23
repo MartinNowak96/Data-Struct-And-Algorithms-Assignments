@@ -1,18 +1,20 @@
 import * as fs from 'fs';
+import { LFSR } from './lfsr';
 
 export class QueueMain{
 
     run(){
         let fileContent
         try {
-            fileContent = fs.readFileSync("src/data/queue/p02input1.txt", 'utf8');
+            fileContent = fs.readFileSync("src/data/queue/p02input2.txt", 'utf8');
         } catch {
             console.log("Error - Unable to open input file.")
         }
 
         let lines = fileContent.split("\n");
-        let queue = new Queue();
-        let lfsr;
+        let queue:Queue;
+        let lfsr:LFSR;
+        let output= "";
         for(let line of lines){
             //console.log(line)
             let firstChar = line.substring(0,1);
@@ -21,19 +23,105 @@ export class QueueMain{
                     console.log(line);
                     break;
                 case "~":
-                    console.log("#################");
+                    console.log("#############################################");
                     break;
                 case "c":
                     
                     let lineInputs = line.split(" ");
-                    if(lineInputs[0] === "Q"){
+                    if(lineInputs[1] === "Q"){
                         queue = new Queue();
                     }else{
-                        lfsr;
+                        lfsr = new LFSR(lineInputs[1],parseInt(lineInputs[2]), parseInt(lineInputs[3]));
                     }
                     break;
                 case "+":
+                    let lineInputs2 = line.split(" ");
+                    if(queue){ 
+                        output = "Queue.Enqueue('" + lineInputs2[1] +"') -- Status = ";
+                        queue.enqueue(parseInt(lineInputs2[1]));
+                        console.log(output +"Completed");
+                    }else{
+                        console.log("LFSR.Enqueue('" + lineInputs2[1] +"') --Status = Failed" );
+                    }
                     break;
+                case "-":
+                    if(queue){
+                        output = "Queue.Dequeue() -- Status = ";
+                        queue.dequeue();
+                        console.log(output + "Completed")
+                    }else{
+                        console.log("LFSR.Dequeue() -- Status = Failed");
+                    }
+                    break;
+                case "f":
+                    if(queue){
+                        output = "Queue.Front() -- Status =";
+                        
+                        let front = queue.getFront();
+                        if(front){
+                            console.log(output + "Value =" + front);
+                        }else{
+                            console.log(output +  "Failed");
+                        }
+                        
+                    }else{
+                        console.log("LFSR.Front() -- Status = Failed");
+                    }break;
+                case "r":
+                    if(queue){
+                        output = "Queue.Rear() -- Status = ";
+                        let rear = queue.getRear();
+                        if(rear){
+                            console.log(output + "Completed, Value = " + rear )
+                        }else{
+                            console.log(output + "Failed")
+                        }
+                    }else{
+                        console.log("LFSR.Rear() -- Status = Failed");
+                    }break;
+                case "e":
+                    if(queue){
+                        console.log("Queue.IsEmpty() --- Status = " + (queue.isEmpty()? "Empty":"Not Empty"));
+                    }else{
+                        console.log("LFSR.IsEmpty() --- Status = Failed")
+                    }break;
+                case "m":
+                    if(queue){
+                        let output = ("Queue.MakeEmpty() -- Status = ");
+                        queue.makeEmpty();
+                        console.log( output + "Completed")
+                    }else{ console.log("LFSR.MakeEmpty() --- Status = Failed")}
+                    break;
+                case "l":
+                    if(queue){
+                        console.log("Queue.size() -- " + queue.size());
+                    }break;
+                case "n":
+                    if(lfsr){
+                        console.log( "LFSR.nextState" + lfsr.nextState())
+                    }break;
+                case "?"://peek
+                    if(queue){
+                        let lineInputs4 = line.split(" ");
+                        console.log("Queue.peek(" + lineInputs4[1]+") -- " + queue.peek(parseInt(lineInputs4[1])) );
+                    }
+                    break;
+                case "p":
+                    if(queue){
+                        console.log("Queue.PrintQ()");
+                        queue.printQ();
+                    }else{
+                        console.log("LFSR.PrintQ()");
+                        lfsr.print();
+                    }
+                    break;
+                case "d":
+                    queue = undefined;
+                    lfsr = undefined;
+
+
+
+                    
             }
         }
 
@@ -43,6 +131,45 @@ export class QueueMain{
 
 export class Queue{
 
+    data:number[] = [];
 
-    
+    makeEmpty(){
+        this.data.length = 0;
+    }
+
+    enqueue(num:number){
+        this.data.push(num);
+    }
+
+    dequeue():void{
+        this.data.splice(0,1);
+    }
+
+    getFront(){
+        return this.data[0];
+    }
+
+    getRear(){
+        return this.data[this.data.length - 1];
+    }
+
+    peek(skip:number){
+        return this.data[skip];
+    }
+
+    size(){
+        return this.data.length;
+    }
+
+    printQ(){
+        for(let item of this.data){
+            console.log(item);
+        }
+    }
+
+    isEmpty(){
+        return this.data.length === 0;
+    }
+
+
 }

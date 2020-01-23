@@ -12,6 +12,6 @@ import { QueueMain } from './queue';
 
 ( ()=>{
 
-    new LinkedListMain().run();
+    //new LinkedListMain().run();
     new QueueMain().run();
 })()

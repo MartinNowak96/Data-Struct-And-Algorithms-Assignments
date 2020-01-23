@@ -38,7 +38,7 @@ export class LinkedListMain{
         console.log("Testing Search function. Search for key 3");
         let searchResult = linkedList.search(3);
         if(searchResult){
-            console.log("Search result: theData =" + searchResult.key);
+            console.log("Search result: theData =" + searchResult.value);
         }else{
             console.log("Search result: Unable to locate item in list");
         }
