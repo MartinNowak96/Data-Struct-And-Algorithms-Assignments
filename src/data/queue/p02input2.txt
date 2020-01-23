@@ -1,0 +1,91 @@
+# Test Queue class member functions MakeEmpty(), Peek(), Size()
+
+# Test MakeEmpty()
+c Q
+e
+m
++ 1
++ 2
++ 3
++ 4
++ 5
++ 6
+p
+e
+m
+p
+e
++ 7
++ 8
+p
+m
+p
+d
+
+~
+
+# Test Peek()
+c Q
+e
++ 1
++ 2
++ 3
++ 4
++ 5
++ 6
+p
+? 0
+? 1
+? 2
+? 3
+? 4
+? 5
+? 6
+p
++ 7
++ 8
+? 6
+? 7 
+? 8
+p
+m
+? 0
+p
+d
+
+~
+
+# Test Size()
+c Q
+p
+l
++ 1
+l
++ 2
+l
++ 3
+l
++ 4
+l
++ 5
+l
++ 6
+l
+p
+-
+-
+p
+l
+-
+l
+p
++ 7
++ 8
+p
+l
+m
+p
+l
+d
+
+

@@ -1,0 +1,91 @@
+# p02input1.txt -- Test Queue class member functions Queue(), ~Queue(), IsEmpty(), Enqueue(), Dequeue(), Front(), Rear()
+
+# Test Queue(), ~Queue()
+c Q
+p
+d
+
+~
+
+# Test Queue(), ~Queue(), IsEmpty()
+c Q
+e
+d
+
+~
+
+# Test Enqueue(), IsEmpty(), Front(), Rear()
+c Q
+p
+e
+f
+r
++ 1
+p
+e
+f
+r
++ 2
+p
+e
+f
+r
++ 3
+p
+e
+f
+r
++ 4
+p
+e
+f
+r
++ 5
+p
+e
+f
+r
+d
+
+~
+
+# Test Enqueue(), Dequeue(), Front(), Rear()
+c Q
+-
+f
+r
++ 1
++ 2
++ 3
++ 4
++ 5
++ 6
+p
+-
+-
+p
+f
+r
++ 7
++ 8
+p
+f
+r
+-
+-
+-
+p
+f
+r
+-
+-
+-
+p
+f
+r
+-
+d
+
+~
+
+
