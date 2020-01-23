@@ -9,8 +9,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^13.5.0",
     "nodemon": "^1.12.1",
-    "ts-node": "^8.5.4",
+    "ts-node": "^8.6.2",
     "typescript": "^3.7.4"
   }
 }
