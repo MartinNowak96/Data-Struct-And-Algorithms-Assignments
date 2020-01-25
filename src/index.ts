@@ -14,4 +14,4 @@ import { QueueMain } from './queue';
 
     //new LinkedListMain().run();
     new QueueMain().run();
-})()
+})()                                                                  

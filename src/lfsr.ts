@@ -1,13 +1,17 @@
 import { Queue } from "./queue";
 
 export class LFSR{
-    queue:Queue;
+    queue:Queue = new Queue();
     tap1:number;
     tap2:number;
 
     constructor(seed:string,tap1:number, tap2:number){
         this.tap1 = tap1;
         this.tap2 = tap2;
+        
+        for(let value of seed){
+            this.queue.enqueue(parseInt(value));
+        }
 
     }
 

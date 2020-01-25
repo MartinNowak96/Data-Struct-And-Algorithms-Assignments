@@ -6,7 +6,7 @@ export class QueueMain{
     run(){
         let fileContent
         try {
-            fileContent = fs.readFileSync("src/data/queue/p02input2.txt", 'utf8');
+            fileContent = fs.readFileSync("src/data/queue/p02input1.txt", 'utf8');
         } catch {
             console.log("Error - Unable to open input file.")
         }
@@ -23,23 +23,29 @@ export class QueueMain{
                     console.log(line);
                     break;
                 case "~":
-                    console.log("#############################################");
+                    console.log("#########################################################");
                     break;
                 case "c":
                     
                     let lineInputs = line.split(" ");
-                    if(lineInputs[1] === "Q"){
+                    if(lineInputs[1].includes("Q")){
                         queue = new Queue();
                     }else{
-                        lfsr = new LFSR(lineInputs[1],parseInt(lineInputs[2]), parseInt(lineInputs[3]));
+                        lfsr = new LFSR(lineInputs[2],parseInt(lineInputs[3]), parseInt(lineInputs[4]));
                     }
                     break;
                 case "+":
+                    
                     let lineInputs2 = line.split(" ");
                     if(queue){ 
-                        output = "Queue.Enqueue('" + lineInputs2[1] +"') -- Status = ";
+
+                        
+                        output = (`queue.Enqueue (${parseInt(lineInputs2[1])}) -- Status = `);
                         queue.enqueue(parseInt(lineInputs2[1]));
-                        console.log(output +"Completed");
+                        output+= "Completed";
+                        console.log( output );
+                    
+                        
                     }else{
                         console.log("LFSR.Enqueue('" + lineInputs2[1] +"') --Status = Failed" );
                     }
@@ -59,7 +65,7 @@ export class QueueMain{
                         
                         let front = queue.getFront();
                         if(front){
-                            console.log(output + "Value =" + front);
+                            console.log(output + "Completed Value =" + front);
                         }else{
                             console.log(output +  "Failed");
                         }
@@ -98,7 +104,12 @@ export class QueueMain{
                     }break;
                 case "n":
                     if(lfsr){
-                        console.log( "LFSR.nextState" + lfsr.nextState())
+                        try{
+                            lfsr.nextState();
+                            console.log( "LFSR.nextState() -- Completed")
+                        }catch{
+                            console.log( "LFSR.nextState() -- Failed")
+                        }
                     }break;
                 case "?"://peek
                     if(queue){
@@ -162,9 +173,12 @@ export class Queue{
     }
 
     printQ(){
-        for(let item of this.data){
-            console.log(item);
+        let output = "Front { "
+        for(let i = 0; i< this.data.length;i++){
+            output += this.data[i] +" ";
         }
+        output += "} Rear";
+        console.log(output);
     }
 
     isEmpty(){
