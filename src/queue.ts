@@ -6,7 +6,7 @@ export class QueueMain{
     run(){
         let fileContent
         try {
-            fileContent = fs.readFileSync("src/data/queue/p02input1.txt", 'utf8');
+            fileContent = fs.readFileSync("src/data/queue/p02input2.txt", 'utf8');
         } catch {
             console.log("Error - Unable to open input file.")
         }
@@ -114,7 +114,12 @@ export class QueueMain{
                 case "?"://peek
                     if(queue){
                         let lineInputs4 = line.split(" ");
-                        console.log("Queue.peek(" + lineInputs4[1]+") -- " + queue.peek(parseInt(lineInputs4[1])) );
+                        let peek = queue.peek(parseInt(lineInputs4[1]))
+                        if(peek){
+                            console.log("Queue.peek(" + lineInputs4[1]+") -- " + peek );
+                        }else{
+                            console.log("Queue.peek(" + lineInputs4[1]+") -- " + "Failed" );
+                        }
                     }
                     break;
                 case "p":
