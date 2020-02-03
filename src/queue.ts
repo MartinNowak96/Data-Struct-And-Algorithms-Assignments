@@ -190,5 +190,17 @@ export class Queue{
         return this.data.length === 0;
     }
 
+    /**
+     * Checks to see if it can add another element to the Q
+     */
+    isFull(){
+        try{
+            [].push(1);
+            return true;
+        }catch{
+            return false;
+        }
+    }
+
 
 }
