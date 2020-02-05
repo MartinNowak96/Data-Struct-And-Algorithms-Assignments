@@ -6,7 +6,7 @@ export class QueueMain{
     run(){
         let fileContent
         try {
-            fileContent = fs.readFileSync("src/data/queue/p02input2.txt", 'utf8');
+            fileContent = fs.readFileSync("src/data/queue/p02input1.txt", 'utf8');
         } catch {
             console.log("Error - Unable to open input file.")
         }
@@ -53,8 +53,14 @@ export class QueueMain{
                 case "-":
                     if(queue){
                         output = "Queue.Dequeue() -- Status = ";
-                        queue.dequeue();
-                        console.log(output + "Completed")
+                        try{
+                            queue.dequeue(); 
+                            console.log(output + "Completed")
+
+                        }catch{
+                            console.log(output + "Failed")                            
+                        }
+                        
                     }else{
                         console.log("LFSR.Dequeue() -- Status = Failed");
                     }
@@ -158,6 +164,10 @@ export class Queue{
     }
 
     dequeue():void{
+        if(this.data.length === 0){
+            //@ts-ignore
+           (undefined).crashPlease;
+        }
         this.data.splice(0,1);
     }
 
