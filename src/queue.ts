@@ -6,7 +6,7 @@ export class QueueMain{
     run(){
         let fileContent
         try {
-            fileContent = fs.readFileSync("src/data/queue/p02input1.txt", 'utf8');
+            fileContent = fs.readFileSync("src/data/queue/p02input3.txt", 'utf8');
         } catch {
             console.log("Error - Unable to open input file.")
         }

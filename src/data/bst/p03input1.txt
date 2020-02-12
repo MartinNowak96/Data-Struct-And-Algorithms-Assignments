@@ -1,0 +1,342 @@
+// p03input1.txt - Test BSTree with integers
+
+# Test creating empty binary search tree of integers
+c int
+p
+d
+
+
+# Test adding one integer to binary search tree of integers
+c int
++  5678
+p
+d
+
+
+# Test adding integers pre-sorted highest to lowest id
+c int
++  5678 
+p
++  1234 
+p
++  1000 
+p
++  888  
+p
++  555  
+p
+d
+
+
+# Test adding integers pre-sorted lowest to highest id
+c int
++  555 
+p
++  888 
+p
++  1000
+p
++  1234 
+p
++  5678 
+p
+d
+
+
+# Test adding an unsorted sequence of integers
+c int
++  1234 
+p
++  888  
+p
++  5678 
+p
++  555  
+p
++  1000 
+p
+d
+
+
+# Test adding duplicate integers to tree
+c int
++  1234 
+p
++  1234 
+p
+d
+
+# Test deleting leaf node that is the left child of its parent
+c int
++  5678 
++  1234 
++  1000 
++  555  
+p
+-  555
+p
+d
+
+
+# Test deleting leaf node that is the right child of its parent
+c int
++  555  
++  1000 
++  1234 
++  5678 
+p
+-  5678
+p
+d
+
+
+# Test deleting parent node that has only a left child
+c int
++  5678 
++  1234 
++  1000 
++  555  
+p
+-  1000
+p
+d
+
+
+# Test deleting parent node that has only a right child
+c int
++  555  
++  1000 
++  1234 
++  5678 
+p
+-  1234
+p
+d
+
+# Test correctness of make empty with integers
+c int
+s
++  1234 
++  888  
++  5678 
++  555  
++  1000 
+p
+m
+p
+d
+
+
+
+# Test correctness of size when adding integers
+c int
+p
+s
++  1234 
+p
+s
++  888  
+p
+s
++  5678 
+p
+s
++  555  
+p
+s
++  1000 
+p
+s
+d
+
+
+# Test correctness of size when deleting integers
+c int
+s
++  1234 
++  888  
++  5678 
++  555  
++  1000 
+p
+s
+-  555
+p
+s
+-  1234
+p
+s
+-  888
+p
+s
+-  5678
+p
+s
+-  1000
+p
+s
+d
+
+
+# Test correctness of size when adding and deleting integers
+c int
++  1234 
+s
++  888  
+s
++  5678 
+p
+s
+-  888
+p
+s
++  555  
+p
+s
++  1000 
+p
+s
+-  1234
+p
+s
+d
+
+
+# Test correctness of size for empty tree
+c int
+p
+s
+d
+
+# Test when min is a left child
+c int
++  5678 
++  1234 
+p
+<
++  1000 
++  555  
+p
+<
+d
+
+
+# Test when min is root
+c int
++  555  
++  1000 
++  1234 
++  5678 
+p
+<
+d
+
+
+# Test min when deleting parent node that has two children
+c int
++  1234 
++  555  
++  1000 
+p
+<
++  5678 
++  888  
+p
+<
+d
+
+
+# Test when min has a right child
+c int
++  1000 
++  1234 
+p
+<
++  555  
++  888  
+p
+<
+d
+
+
+# Test when min is the only value
+c int
++  888  
+p
+<
+d
+
+
+# Test min when tree is empty
+c int
+p
+<
+d
+
+
+# Test when max is a left child
+c int
++  5678 
++  1234 
++  1000 
++  555  
+p
+>
+d
+
+
+# Test when max is root
+c int
++  555  
++  1000 
++  1234 
++  5678 
+p
+>
+d
+
+
+# Test max when parent node that has two children
+c int
++  1234 
++  555  
++  1000 
+p
+>
++  5678 
++  888  
+p
+>
+d
+
+
+# Test when max has a right child
+c int
++  1000 
++  1234 
+p
+>
++  555  
++  888  
+p
+>
+d
+
+
+# Test when max is the only value
+c int
++  888  
+p
+>
+d
+
+
+# Test max when tree is empty
+c int
+p
+>
+d
+
+
+
+

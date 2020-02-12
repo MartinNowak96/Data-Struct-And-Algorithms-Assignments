@@ -1,0 +1,381 @@
+// p03input2.txt - Test BSTree(), InsertItem(), DeleteItem(), MakeEmpty(), ~BSTree(), Size(), Min(), Max() with Items
+
+# Test creating empty binary search tree of Items
+c Item 
+p
+d
+
+
+# Test adding one item to binary search tree of Items
+c Item
++  5678 truck      100.00
+p
+d
+
+
+# Test adding Item objects pre-sorted highest to lowest id
+c Item
++  5678 truck      100.00
+p
++  1234 car        75.00
+p
++  1000 plane      250.00
+p
++  888  boat       150.00
+p
++  555  train      125.00
+p
+d
+
+
+# Test adding Item objects pre-sorted lowest to highest id
+c Item
++  555  train      125.00
+p
++  888  boat       150.00
+p
++  1000 plane      250.00
+p
++  1234 car        75.00
+p
++  5678 truck      100.00
+p
+d
+
+
+# Test adding an unsorted sequence of Item objects
+c Item
++  1234 car        75.00
+p
++  888  boat       150.00
+p
++  5678 truck      100.00
+p
++  555  train      125.00
+p
++  1000 plane      250.00
+p
+d
+
+
+# Test adding duplicate Item object to tree
+c Item
++  1234 car        75.00
+p
++  1234 car        75.00
+p
+d
+
+# Test deleting leaf node that is the left child of its parent
+c Item
++  5678 truck      100.00
++  1234 car        75.00
++  1000 plane      250.00
++  555  train      125.00
+p
+-  555
+p
+d
+
+
+# Test deleting leaf node that is the right child of its parent
+c Item
++  555  train      125.00
++  1000 plane      250.00
++  1234 car        75.00
++  5678 truck      100.00
+p
+-  5678
+p
+d
+
+
+# Test deleting parent node that has only a left child
+c Item
++  5678 truck      100.00
++  1234 car        75.00
++  1000 plane      250.00
++  555  train      125.00
+p
+-  1000
+p
+d
+
+
+# Test deleting parent node that has only a right child
+c Item
++  555  train      125.00
++  1000 plane      250.00
++  1234 car        75.00
++  5678 truck      100.00
+p
+-  1234
+p
+d
+
+# Test make empty with empty binary search tree of Items
+c Item 
+p
+m
+p
+d
+
+
+# Test make empty with one element binary search tree of Items
+c Item
++  5678 truck      100.00
+p
+m
+p
+d
+
+
+# Test make empty with Item objects pre-sorted highest to lowest id
+c Item
++  5678 truck      100.00
++  1234 car        75.00
++  1000 plane      250.00
++  888  boat       150.00
++  555  train      125.00
+p
+m
+p
+d
+
+
+# Test make empty with Item objects pre-sorted lowest to highest id
+c Item
++  555  train      125.00
++  888  boat       150.00
++  1000 plane      250.00
++  1234 car        75.00
++  5678 truck      100.00
+p
+m
+p
+d
+
+
+# Test make empty with an unsorted sequence of Item objects
+c Item
++  1234 car        75.00
++  888  boat       150.00
++  5678 truck      100.00
++  555  train      125.00
++  1000 plane      250.00
+p
+m
+p
+d
+
+# Test correctness of size when adding Item objects
+c Item
+p
+s
++  1234 car        75.00
+p
+s
++  888  boat       150.00
+p
+s
++  5678 truck      100.00
+p
+s
++  555  train      125.00
+p
+s
++  1000 plane      250.00
+p
+s
+d
+
+
+# Test correctness of size when deleting Item objects
+c Item
+s
++  1234 car        75.00
++  888  boat       150.00
++  5678 truck      100.00
++  555  train      125.00
++  1000 plane      250.00
+p
+s
+- 555
+p
+s
+- 1234
+p
+s
+- 888
+p
+s
+- 5678
+p
+s
+- 1000
+p
+s
+d
+
+
+# Test correctness of size when adding and deleting Item objects
+c Item
++  1234 car        75.00
+s
++  888  boat       150.00
+s
++  5678 truck      100.00
+p
+s
+-  888
+p
+s
++  555  train      125.00
+p
+s
++  1000 plane      250.00
+p
+s
+-  1234
+p
+s
+d
+
+
+# Test correctness of size for empty tree
+c Item
+p
+s
+d
+
+# Test when min is a left child
+c Item
++  5678 truck      100.00
++  1234 car        75.00
+p
+<
++  1000 plane      250.00
++  555  train      125.00
+p
+<
+d
+
+
+# Test when min is root
+c Item
++  555  train      125.00
++  1000 plane      250.00
++  1234 car        75.00
++  5678 truck      100.00
+p
+<
+d
+
+
+# Test deleting parent node that has two children
+c Item
++  1234 car        75.00
++  555  train      125.00
++  1000 plane      250.00
+p
+<
++  5678 truck      100.00
++  888  boat       150.00
+p
+<
+d
+
+
+# Test when min has a right child
+c Item
++  1000 plane      250.00
++  1234 car        75.00
+p
+<
++  555  train      125.00
++  888  boat       150.00
+p
+<
+d
+
+
+# Test when min is the only value
+c Item
++  888  boat       150.00
+p
+<
+d
+
+
+# Test min when tree is empty
+c Item
+p
+<
+d
+
+
+# Test when max is a left child
+c Item
++  5678 truck      100.00
++  1234 car        75.00
++  1000 plane      250.00
++  555  train      125.00
+p
+>
+d
+
+
+# Test when max is root
+c Item
++  555  train      125.00
++  1000 plane      250.00
++  1234 car        75.00
++  5678 truck      100.00
+p
+>
+d
+
+
+# Test max when parent node that has two children
+c Item
++  1234 car        75.00
++  555  train      125.00
++  1000 plane      250.00
+p
+>
++  5678 truck      100.00
++  888  boat       150.00
+p
+>
+d
+
+
+# Test when max has a right child
+c Item
++  1000 plane      250.00
++  1234 car        75.00
+p
+>
++  555  train      125.00
++  888  boat       150.00
+p
+>
+d
+
+
+# Test when max is the only value
+c Item
++  888  boat       150.00
+p
+>
+d
+
+
+# Test max when tree is empty
+c Item
+p
+>
+d
+
+
+

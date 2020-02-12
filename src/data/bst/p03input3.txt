@@ -1,0 +1,182 @@
+// p03input3.txt - Test TotalLevels(), Level() with integers and Items
+
+# Test totallevels as tree grows level by level
+c int
++  555  
+p
+l
++  1000 
+p
+l
++  1234 
+p
+l
++  5678 
+p
+l
+d
+
+
+# Test totallevels as with a more balanced tree
+c int
++  555  
++  1000 
++  1234 
++  5678 
++  888  
+p
+l
+d
+
+
+# Test totallevels with single node tree
+c int
++  888  
+p
+l
+d
+
+
+# Test totallevels with empty tree
+c int
+p
+l
+d
+
+# Test level as tree grows level by level
+c int
++  555  
++  1000 
++  1234 
++  5678 
+p
+?  555
+?  1000
+?  1234
+?  5678
+d
+
+
+# Test level as with a more balanced tree
+c int
++  555  
++  1000 
++  1234 
++  5678 
++  888  
+p
+?  555
+?  1000
+?  1234
+?  5678
+?  888
+d
+
+
+# Test level with single node tree
+c int
++  888  
+p
+?  888
+d
+
+
+# Test level with empty tree
+c int
+p
+?  888
+d
+
+
+# Test totallevels as tree grows level by level
+c Item
++  555  train      125.00
+p
+l
++  1000 plane      250.00
+p
+l
++  1234 car        75.00
+p
+l
++  5678 truck      100.00
+p
+l
+d
+
+
+# Test totallevels as with a more balanced tree
+c Item
++  555  train      125.00
++  1000 plane      250.00
++  1234 car        75.00
++  5678 truck      100.00
++  888  boat       150.00
+p
+l
+d
+
+
+# Test totallevels with single node tree
+c Item
++  888  boat       150.00
+p
+l
+d
+
+
+# Test totallevels with empty tree
+c Item
+p
+l
+d
+
+# Test level as tree grows level by level
+c Item
++  555  train      125.00
++  1000 plane      250.00
++  1234 car        75.00
++  5678 truck      100.00
+p
+?  555
+?  1000
+?  1234
+?  5678
+d
+
+
+# Test level as with a more balanced tree
+c Item
++  555  train      125.00
++  1000 plane      250.00
++  1234 car        75.00
++  5678 truck      100.00
++  888  boat       150.00
+p
+?  555
+?  1000
+?  1234
+?  5678
+?  888
+d
+
+
+# Test level with single node tree
+c Item
++  888  boat       150.00
+p
+?  888
+d
+
+
+# Test level with empty tree
+c Item
+p
+?  888
+d
+
+
+
+
+
+

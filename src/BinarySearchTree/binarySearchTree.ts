@@ -1,37 +1,293 @@
+import { Item } from "./item";
+
 export class BinarySearchTree{
 
     rootNode:BinarySearchNode;
+    size:number =0;
 
-
-    constructor(){
-
+    constructor(copyTree?:BinarySearchTree){
+        if(copyTree){
+            this.rootNode = JSON.parse(JSON.stringify(copyTree));
+        }   
     }
 
-    delete():void{
-
-    }
-
-    deleteNode():void{
-
-    }
-
-    insert(node:BinarySearchNode,):void{
-        let recursion = (currentNode)=>{
-            if(currentNode === undefined){
-                currentNode = node;
+    private delete(node:BinarySearchNode,parentNode:BinarySearchNode, item:any):void{
+        if(node == undefined){
+            return;
+        }
+        if(node.data === item){
+            this.deleteNode(node, parentNode);
+            this.size--;
+            return item;
+        }
+        if(typeof node.data === "number"){
+            if(node.data > item){
+                return this.delete(node.leftNode,node,item);
             }else{
-                if(currentNode.data.)
+                return this.delete(node.rightNode,node,item);
+            }
+        }else{
+            if(node.data.itemId > item.itemId){
+                return this.delete(node.leftNode,node,item);
+            }else{
+                return this.delete(node.rightNode,node,item);
             }
         }
         
     }
 
-    destroy():void{
+    private deleteNode(removeNode: BinarySearchNode, parentNode:BinarySearchNode){
+        if(removeNode.leftNode === undefined && removeNode.rightNode === undefined){
+            if(removeNode === this.rootNode){
+                this.rootNode = undefined;
+            }else if(parentNode.leftNode === removeNode){
+                parentNode.leftNode = undefined;
+            }else{
+                parentNode.rightNode =undefined;
+            }
+        }else if(removeNode.leftNode === undefined){
+            if(parentNode.rightNode === removeNode){
+                parentNode.rightNode = removeNode.rightNode;
+            }else{
+                parentNode.leftNode = removeNode.rightNode;
+            }
+        }else if(removeNode.rightNode ===undefined){
+            if(parentNode === undefined){
+                this.rootNode = removeNode.leftNode;
+            }else{
+                if(parentNode.leftNode === removeNode){
+                    parentNode.leftNode = removeNode.leftNode;
+                }else{
+                    parentNode.rightNode = removeNode.leftNode;
+                }
+            }
+        }else{
+            let mostLeftNode = this.getMostLeftNode(removeNode.rightNode);
+            removeNode.data = mostLeftNode.data;
+            let mostLeftParent = this.getParent(this.rootNode,mostLeftNode);
+
+            if(mostLeftParent){
+                if(mostLeftParent.leftNode === mostLeftNode){
+                    mostLeftParent.leftNode = undefined;
+                }
+                else if(mostLeftParent.rightNode === mostLeftNode){
+                    mostLeftParent.rightNode = undefined;
+                }
+            }
+            
+
+        }
+    }
+
+    private getParent(currentNode:BinarySearchNode,searchNode:BinarySearchNode){
+        if(currentNode.leftNode === searchNode){
+            return currentNode;
+        }
+        if(currentNode.rightNode === searchNode){
+            return currentNode;
+        }
+        if(typeof searchNode.data === "number"){
+            if(searchNode.data < currentNode.data){
+                return this.getParent(currentNode.leftNode,searchNode);
+            }else{
+                return this.getParent(currentNode.rightNode, currentNode);
+            }
+        }else{
+            if(searchNode.data.itemId < currentNode.data.itemId){
+                return this.getParent(currentNode.leftNode,searchNode);
+            }else{
+                return this.getParent(currentNode.rightNode, currentNode);
+            }
+        }
+    }
+
+    private getMostLeftNode(node):BinarySearchNode{
+        if(node ===undefined){
+            return undefined;
+        }
+        if(node.leftNode){
+            return this.getMostLeftNode(node.leftNode);
+        }else{
+            return node;
+        }
+    }
+
+    private getMostRightNode(node):BinarySearchNode{
+        if(node === undefined){
+            return undefined;
+        }else if(node.rightNode){
+           return this.getMostRightNode(node.rightNode);
+        }else{
+            return node;
+        }
+    }
+
+    /**
+     * Called from the consuming application
+     */
+    public deleteItem(data:any):void{
+        this.delete(this.rootNode,undefined,data);
+    }
+
+
+    private insert(node:BinarySearchNode,):void{
+        let recursion = (currentNode)=>{
+            if(currentNode === undefined){
+                return;
+            }else{
+                if(typeof currentNode.data === "number"){
+                    if(currentNode.data > node.data){
+                        if(currentNode.leftNode === undefined){
+                            currentNode.leftNode = node;
+                        }else{
+                            recursion(currentNode.leftNode);
+                        }
+                        
+                    }else{
+                        if(currentNode.rightNode === undefined){
+                            currentNode.rightNode = node;
+                        }else{
+                            recursion(currentNode.rightNode);
+                        }
+                        
+                    }
+                }else{//data is Item
+                    let data:Item = node.data;
+                    if(currentNode.data.itemId > data.itemId ){
+                        if(currentNode.leftNode === undefined){
+                            currentNode.leftNode = node;
+                        }else{
+                            recursion(currentNode.leftNode);
+                        }
+                    }else{
+                        if(currentNode.rightNode === undefined){
+                            currentNode.rightNode = node;
+                        }else{
+                            recursion(currentNode.rightNode);
+                        }
+                    }
+                }
+            }
+        }
+        if(this.rootNode === undefined){
+            this.rootNode = node;
+        }else{
+            recursion(this.rootNode);
+        }
+        
+    }
+
+    public insertItem(data:any){
+        let node = new BinarySearchNode();
+        node.data = data;
+        this.insert(node);
+        this.size++;
+    }
+
+    public destroy():void{
 
     }
 
-    copyTree(){
-        
+    public print(){
+
+        let preOrder = this.getPreOrderValues();
+        let inOrder = this.getInOrderValues();
+        let postOrder = this.getPostOrderValues();
+
+        console.log("Print()")
+        let output = "-- Inorder = { ";
+        for(let value of inOrder){
+            if(typeof value === "number"){
+                output += " " + value;
+            }else{
+                output += " " + JSON.stringify(value);
+            }
+        }
+        output +=" }";
+        console.log(output);
+
+        output = "-- Preorder = { ";
+        for(let value of preOrder){
+            if(typeof value === "number"){
+                output += " " + value;
+            }else{
+                output += " " + JSON.stringify(value);
+            }
+        }
+        output +=" }";
+        console.log(output);
+
+        output = "-- Postorder = { ";
+        for(let value of postOrder){
+            if(typeof value === "number"){
+                output += " " + value;
+            }else{
+                output += " " + JSON.stringify(value);
+            }
+        }
+        output +=" }";
+        console.log(output);
+
+
+    }
+
+    public min():any{
+        return this.getMostLeftNode(this.rootNode).data;
+    }
+
+    public max():any{
+        return this.getMostRightNode(this.rootNode).data;
+    }
+
+    private getPreOrderValues():any[]{
+        let values = [];
+
+        let recursion = (node)=>{
+            if(node !== undefined){
+                values.push(node.data);
+                recursion(node.leftNode);
+                recursion(node.rightNode);
+            }
+        }
+        recursion(this.rootNode);
+        return values;
+    }
+
+    private getInOrderValues(){
+        let values = [];
+
+        let recursion = (node)=>{
+            if(node !== undefined){
+                recursion(node.leftNode);
+                values.push(node.data);
+                recursion(node.rightNode);
+            }
+        }
+        recursion(this.rootNode);
+        return values;
+    }
+
+    private getPostOrderValues(){
+        let values = [];
+
+        let recursion = (node)=>{
+            if(node !== undefined){
+                recursion(node.leftNode);
+                recursion(node.rightNode);
+                values.push(node.data);
+            }
+        }
+        recursion(this.rootNode);
+        return values;
+    }
+
+    public makeEmpty(){
+        this.rootNode = undefined;
+        this.size = 0;
+    }
+
+    public totalLevels(){
+
     }
 
 }

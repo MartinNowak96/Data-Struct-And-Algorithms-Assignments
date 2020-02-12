@@ -1,0 +1,77 @@
+// p03input4.txt - Test operator=, copy constructor, parent with integers and Items
+
+# Test Copy Constructor
+c int
++  1234 
++  888  
++  5678 
++  555  
++  1000 
+p
+!  777  
+d
+
+
+# Test Assignment Operator
+c int
++  1234 
++  888  
++  5678 
++  555  
++  1000 
+p
+=  777  
+d
+
+
+# Test Copy Constructor
+c Item
++  1234 car        75.00
++  888  boat       150.00
++  5678 truck      100.00
++  555  train      125.00
++  1000 plane      250.00
+p
+!  777  horse      50.00
+d
+
+
+# Test Assignment Operator
+c Item
++  1234 car        75.00
++  888  boat       150.00
++  5678 truck      100.00
++  555  train      125.00
++  1000 plane      250.00
+p
+=  777  horse      50.00
+d
+
+
+# Test Parent
+c Item
++  1234 car        75.00
++  888  boat       150.00
++  5678 truck      100.00
++  555  train      125.00
++  1000 plane      250.00
+p
+^  999
+^  888
+^  5678
+^  555
+^  1000
+^  1234
+p
++  3456 blimp      300.00
+^  999
+^  888
+^  5678
+^  555
+^  1000
+^  3456
+^  1234
+p
+d
+
+

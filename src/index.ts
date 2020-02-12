@@ -9,9 +9,11 @@
  */
 import {LinkedListMain} from './linkedList';
 import { QueueMain } from './queue';
+import { BinarySearchTreeMain } from './BinarySearchTree/main';
 
 ( ()=>{
 
     //new LinkedListMain().run();
-    new QueueMain().run();
+    //new QueueMain().run();
+    new BinarySearchTreeMain();
 })()                                                                  
