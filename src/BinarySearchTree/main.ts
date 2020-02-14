@@ -5,6 +5,8 @@ import { Item } from './item';
 
 export class BinarySearchTreeMain {
     constructor() {
+
+    
         let fileContent
         try {
             fileContent = fs.readFileSync("src/data/bst/p03input2.txt", 'utf8');

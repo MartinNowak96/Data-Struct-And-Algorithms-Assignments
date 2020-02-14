@@ -16,4 +16,5 @@ import { BinarySearchTreeMain } from './BinarySearchTree/main';
     //new LinkedListMain().run();
     //new QueueMain().run();
     new BinarySearchTreeMain();
+
 })()                                                                  

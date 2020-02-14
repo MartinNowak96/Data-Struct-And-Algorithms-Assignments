@@ -68,11 +68,13 @@ export class BinarySearchTree{
 
             if(mostLeftParent){
                 if(mostLeftParent.leftNode === mostLeftNode){
-                    mostLeftParent.leftNode = undefined;
+                    mostLeftParent.leftNode = mostLeftNode.rightNode;
                 }
                 else if(mostLeftParent.rightNode === mostLeftNode){
                     mostLeftParent.rightNode = undefined;
                 }
+            }else{
+                this.rootNode = mostLeftNode.rightNode;
             }
             
 
@@ -90,13 +92,13 @@ export class BinarySearchTree{
             if(searchNode.data < currentNode.data){
                 return this.getParent(currentNode.leftNode,searchNode);
             }else{
-                return this.getParent(currentNode.rightNode, currentNode);
+                return this.getParent(currentNode.rightNode, searchNode);
             }
         }else{
             if(searchNode.data.itemId < currentNode.data.itemId){
                 return this.getParent(currentNode.leftNode,searchNode);
             }else{
-                return this.getParent(currentNode.rightNode, currentNode);
+                return this.getParent(currentNode.rightNode, searchNode);
             }
         }
     }
@@ -287,7 +289,15 @@ export class BinarySearchTree{
     }
 
     public totalLevels(){
-
+        let recursion =(node:BinarySearchNode)=>{
+            let rightCount = recursion(node.rightNode);
+            let leftCount = recursion(node.leftNode);
+            if(rightCount > leftCount){
+                return(rightCount+1);
+            }else{
+                return(leftCount+1);
+            }
+        }
     }
 
 }
