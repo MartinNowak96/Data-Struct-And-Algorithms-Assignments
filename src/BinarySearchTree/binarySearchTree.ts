@@ -288,8 +288,11 @@ export class BinarySearchTree{
         this.size = 0;
     }
 
-    public totalLevels(){
+    public totalLevels():number{
         let recursion =(node:BinarySearchNode)=>{
+            if(node === null){
+                return 0;
+            }
             let rightCount = recursion(node.rightNode);
             let leftCount = recursion(node.leftNode);
             if(rightCount > leftCount){
@@ -298,6 +301,31 @@ export class BinarySearchTree{
                 return(leftCount+1);
             }
         }
+        return recursion(this.rootNode);
+    }
+
+    public level(data:any):number{
+        let recursion =(node:BinarySearchNode):number=>{
+            if(typeof(data) === "number"){
+                if(data === node.data){
+                    return 0;
+                }else if(data < node.data){
+                    return recursion(node.leftNode) +1;
+                }else{
+                    return recursion(node.rightNode) +1;
+                }
+            }else{
+                if(data.itemId === node.data.itemId){
+                    return 0;
+                }else if(data.itemId < node.data.itemId){
+                    return recursion(node.leftNode) +1;
+                }else{
+                    return recursion(node.rightNode) +1;
+                }
+            }
+        }
+
+        return recursion(this.rootNode);
     }
 
 }

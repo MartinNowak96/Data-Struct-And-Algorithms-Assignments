@@ -160,7 +160,7 @@ export class BinarySearchTreeMain {
                     }
                     
                     break;
-                case ">":
+                case "l":
                     let output4 = "TotalLevels() -- ";
                     try{
                         output4 += tree.totalLevels();
@@ -171,6 +171,32 @@ export class BinarySearchTreeMain {
                     }
                     
                     break;
+                case "?":
+                    let output5 = "Level('"+ inputs[1]+"') -- ";
+                    try{
+                        if(dType === "int"){
+                            output5 += tree.level(inputs[1]);
+                        }else{
+                            let item = new Item(parseInt(inputs[1]),inputs[2], parseFloat(inputs[3]))
+                            output5 += tree.level(item);
+                        }
+                    }catch{
+                        output5 += "Failed";
+                    }
+                    console.log(output5);
+                case "^":
+                    let output6 = "Parent('"+ inputs[1]+"') -- ";
+                    try{
+                        if(dType === "int"){
+                            output6 += tree.level(inputs[1]);
+                        }else{
+                            let item = new Item(parseInt(inputs[1]),inputs[2], parseFloat(inputs[3]))
+                            output6 += tree.(item);
+                        }
+                    }catch{
+                        output6 += "Failed";
+                    }
+                    console.log(output6);
 
             }
         }
