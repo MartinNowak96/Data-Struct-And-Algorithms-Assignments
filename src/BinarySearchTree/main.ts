@@ -9,7 +9,7 @@ export class BinarySearchTreeMain {
     
         let fileContent
         try {
-            fileContent = fs.readFileSync("src/data/bst/p03input2.txt", 'utf8');
+            fileContent = fs.readFileSync("src/data/bst/p03input4.txt", 'utf8');
         } catch {
             console.log("Error - Unable to open input file.")
         }
@@ -97,7 +97,7 @@ export class BinarySearchTreeMain {
 
                         }else{
                             let newItems = new Item(parseInt(inputs[1]), inputs[2], parseFloat(inputs[3]));
-                            addOutput+=JSON.stringify(newItems) +")";
+                            addOutput+=newItems.stringify() +")";
                             tree.insertItem(newItems);
                             
                             console.log(addOutput)

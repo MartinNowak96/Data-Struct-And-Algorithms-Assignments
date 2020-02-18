@@ -10,6 +10,10 @@ export class Item{
         this.itemPrice = price;
     }
 
+    stringify(){
+        return "[" + this.itemId +" " + this.itemName + " " + this.itemPrice + "]"
+     }
+
     
 
 }

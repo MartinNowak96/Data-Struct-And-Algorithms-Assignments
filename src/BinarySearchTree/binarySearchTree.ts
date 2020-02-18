@@ -235,7 +235,7 @@ export class BinarySearchTree{
             if(typeof value === "number"){
                 output += " " + value;
             }else{
-                output += " " + JSON.stringify(value);
+                output += " " + value.stringify();
             }
         }
         output +=" }";
@@ -246,7 +246,7 @@ export class BinarySearchTree{
             if(typeof value === "number"){
                 output += " " + value;
             }else{
-                output += " " + JSON.stringify(value);
+                output += " " + value.stringify();
             }
         }
         output +=" }";
@@ -257,7 +257,7 @@ export class BinarySearchTree{
             if(typeof value === "number"){
                 output += " " + value;
             }else{
-                output += " " + JSON.stringify(value);
+                output += " " + value.stringify();
             }
         }
         output +=" }";
