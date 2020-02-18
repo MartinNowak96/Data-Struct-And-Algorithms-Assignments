@@ -103,6 +103,39 @@ export class BinarySearchTree{
         }
     }
 
+    public parent(data){
+        let recursion =(searchNode:BinarySearchNode)=>{
+            if(searchNode === undefined){
+                return;
+            }
+            if(typeof searchNode.data === "number" && searchNode.leftNode.data === data){
+                return searchNode;
+            }else if(typeof searchNode.data !== "number" && searchNode.leftNode.data.itemId === data.itemId){
+                return searchNode;
+            }
+            if(typeof searchNode.data === "number" && searchNode.rightNode.data === data){
+                return searchNode;
+            }else if(typeof searchNode.data !== "number" && searchNode.rightNode.data.itemId === data.itemId){
+                return searchNode;
+            }
+
+            if(typeof searchNode.data === "number"){
+                if(searchNode.data < data){
+                    return recursion(searchNode.leftNode);
+                }else{
+                    return recursion(searchNode.rightNode);
+                }
+            }else{
+                if(searchNode.data.itemId < data.itemId){
+                    return recursion(searchNode.leftNode);
+                }else{
+                    return recursion(searchNode.rightNode);
+                }
+            }
+        }
+        return recursion(this.rootNode);
+    }
+
     private getMostLeftNode(node):BinarySearchNode{
         if(node ===undefined){
             return undefined;

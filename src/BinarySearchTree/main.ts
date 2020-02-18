@@ -177,7 +177,7 @@ export class BinarySearchTreeMain {
                         if(dType === "int"){
                             output5 += tree.level(inputs[1]);
                         }else{
-                            let item = new Item(parseInt(inputs[1]),inputs[2], parseFloat(inputs[3]))
+                            let item = new Item(parseInt(inputs[1]),"", -1)
                             output5 += tree.level(item);
                         }
                     }catch{
@@ -188,10 +188,10 @@ export class BinarySearchTreeMain {
                     let output6 = "Parent('"+ inputs[1]+"') -- ";
                     try{
                         if(dType === "int"){
-                            output6 += tree.level(inputs[1]);
+                            output6 += tree.parent(parseInt(inputs[1]));
                         }else{
-                            let item = new Item(parseInt(inputs[1]),inputs[2], parseFloat(inputs[3]))
-                            output6 += tree.(item);
+                            let item = new Item(parseInt(inputs[1]),"", -1)
+                            output6 += tree.parent(item);
                         }
                     }catch{
                         output6 += "Failed";
