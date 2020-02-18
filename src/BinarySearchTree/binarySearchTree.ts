@@ -7,7 +7,10 @@ export class BinarySearchTree{
 
     constructor(copyTree?:BinarySearchTree){
         if(copyTree){
-            this.rootNode = JSON.parse(JSON.stringify(copyTree));
+            let tree:BinarySearchTree =JSON.parse(JSON.stringify(copyTree))
+            this.rootNode = tree.rootNode;
+            this.size = tree.size;
+
         }   
     }
 
@@ -126,14 +129,14 @@ export class BinarySearchTree{
                     return recursion(searchNode.rightNode);
                 }
             }else{
-                if(searchNode.data.itemId < data.itemId){
+                if(searchNode.data.itemId > data.itemId){
                     return recursion(searchNode.leftNode);
                 }else{
                     return recursion(searchNode.rightNode);
                 }
             }
         }
-        return recursion(this.rootNode);
+        return recursion(this.rootNode).data;
     }
 
     private getMostLeftNode(node):BinarySearchNode{
@@ -235,7 +238,12 @@ export class BinarySearchTree{
             if(typeof value === "number"){
                 output += " " + value;
             }else{
-                output += " " + value.stringify();
+                if(value.stringify){
+                    output += " " + value.stringify();
+                }else{
+                    output += " " + "[ "+value.itemId + " " + value.itemName +" " + value.itemPrice +" ]";
+                }
+                
             }
         }
         output +=" }";
@@ -246,7 +254,11 @@ export class BinarySearchTree{
             if(typeof value === "number"){
                 output += " " + value;
             }else{
-                output += " " + value.stringify();
+                if(value.stringify){
+                    output += " " + value.stringify();
+                }else{
+                    output += " " + "[ "+value.itemId + " " + value.itemName +" " + value.itemPrice +" ]";
+                                }
             }
         }
         output +=" }";
@@ -257,7 +269,11 @@ export class BinarySearchTree{
             if(typeof value === "number"){
                 output += " " + value;
             }else{
-                output += " " + value.stringify();
+                if(value.stringify){
+                    output += " " + value.stringify();
+                }else{
+                    output += " " + "[ "+value.itemId + " " + value.itemName +" " + value.itemPrice +" ]";
+                                }
             }
         }
         output +=" }";

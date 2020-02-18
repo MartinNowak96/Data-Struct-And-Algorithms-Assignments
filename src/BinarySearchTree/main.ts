@@ -16,8 +16,10 @@ export class BinarySearchTreeMain {
         let lines = fileContent.split("\n");
         let dType;
         let tree:BinarySearchTree;
-        for (let line of lines) {
-            let inputs = line.split(" ")
+        for (let i =0; i < lines.length;i++) {
+            lines[i] = lines[i].replace("\r","")
+            let line= lines[i]
+            let inputs = lines[i].split(" ")
             for(let i = 0; i <  inputs.length;i++){
                 if(inputs[i] === ""){
                     inputs.splice(i,1);
@@ -29,7 +31,7 @@ export class BinarySearchTreeMain {
                     console.log(line);
                     break;
                 case "c"://constructor
-                    dType = inputs[1];
+                    dType = inputs[1].includes("int")?"int":"item";
                     console.log("Constructor() -- BSTree<" + dType + ">")
                     try {
                         tree = new BinarySearchTree();
@@ -65,7 +67,7 @@ export class BinarySearchTreeMain {
                     break;
                 case "=":
                     try {
-                        console.log("*** Start Copy Operator= Test ***");
+                        console.log("*** Start Operator= Test ***");
                         let dummyTree = new BinarySearchTree(tree);
                         console.log("Print Copy without new value");
                         dummyTree.print();
@@ -191,10 +193,24 @@ export class BinarySearchTreeMain {
                             output6 += tree.parent(parseInt(inputs[1]));
                         }else{
                             let item = new Item(parseInt(inputs[1]),"", -1)
-                            output6 += tree.parent(item);
+                            output6 += tree.parent(item).stringify();
                         }
                     }catch{
                         output6 += "Failed";
+                        if(dType === "int"){
+                            if(tree.rootNode.data === inputs[1]){
+                                output6 +=" -- Root has no parent in BSTree"
+                            }else{
+                                output6+= " -- Not Found in BSTree"
+                            }
+                        }else{
+                            if(tree.rootNode.data.itemId === parseInt(inputs[1])){
+                                output6 +=" -- Root has no parent in BSTree"
+                            }else{
+                                output6+= " -- Not Found in BSTree"
+                            }
+                        }
+                        
                     }
                     console.log(output6);
 
