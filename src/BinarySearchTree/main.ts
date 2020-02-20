@@ -9,7 +9,7 @@ export class BinarySearchTreeMain {
     
         let fileContent
         try {
-            fileContent = fs.readFileSync("src/data/bst/p03input3.txt", 'utf8');
+            fileContent = fs.readFileSync("src/data/bst/p03input2.txt", 'utf8');
         } catch {
             console.log("Error - Unable to open input file.")
         }
@@ -165,7 +165,12 @@ export class BinarySearchTreeMain {
                 case "l":
                     let output4 = "TotalLevels() -- ";
                     try{
-                        output4 += tree.totalLevels();
+                        let level =  tree.totalLevels();
+                        if(level === 0){
+                            output4 += "Failed Empty BSTree";
+                        }else{
+                            output4+= level;
+                        }
                         console.log(output4);
                     }catch{
                         output4 += "Failed";
