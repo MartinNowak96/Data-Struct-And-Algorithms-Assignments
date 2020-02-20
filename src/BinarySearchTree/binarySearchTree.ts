@@ -111,19 +111,19 @@ export class BinarySearchTree{
             if(searchNode === undefined){
                 return;
             }
-            if(typeof searchNode.data === "number" && searchNode.leftNode.data === data){
+            if(typeof searchNode.data === "number" && searchNode.leftNode &&  searchNode.leftNode.data === data){
                 return searchNode;
-            }else if(typeof searchNode.data !== "number" && searchNode.leftNode.data.itemId === data.itemId){
+            }else if(typeof searchNode.data !== "number"  && searchNode.leftNode && searchNode.leftNode.data.itemId === data.itemId){
                 return searchNode;
             }
-            if(typeof searchNode.data === "number" && searchNode.rightNode.data === data){
+            if(typeof searchNode.data === "number"  && searchNode.rightNode && searchNode.rightNode.data === data){
                 return searchNode;
-            }else if(typeof searchNode.data !== "number" && searchNode.rightNode.data.itemId === data.itemId){
+            }else if(typeof searchNode.data !== "number" && searchNode.rightNode && searchNode.rightNode.data.itemId === data.itemId){
                 return searchNode;
             }
 
             if(typeof searchNode.data === "number"){
-                if(searchNode.data < data){
+                if(searchNode.data > data){
                     return recursion(searchNode.leftNode);
                 }else{
                     return recursion(searchNode.rightNode);
@@ -339,15 +339,15 @@ export class BinarySearchTree{
 
     public totalLevels():number{
         let recursion =(node:BinarySearchNode)=>{
-            if(node === null){
+            if(node === undefined){
                 return 0;
             }
             let rightCount = recursion(node.rightNode);
             let leftCount = recursion(node.leftNode);
             if(rightCount > leftCount){
-                return(rightCount+1);
+                return (rightCount+1);
             }else{
-                return(leftCount+1);
+                return (leftCount+1);
             }
         }
         return recursion(this.rootNode);

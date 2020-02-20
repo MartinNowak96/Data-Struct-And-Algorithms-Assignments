@@ -9,7 +9,7 @@ export class BinarySearchTreeMain {
     
         let fileContent
         try {
-            fileContent = fs.readFileSync("src/data/bst/p03input4.txt", 'utf8');
+            fileContent = fs.readFileSync("src/data/bst/p03input3.txt", 'utf8');
         } catch {
             console.log("Error - Unable to open input file.")
         }
@@ -198,17 +198,31 @@ export class BinarySearchTreeMain {
                     }catch{
                         output6 += "Failed";
                         if(dType === "int"){
-                            if(tree.rootNode.data === inputs[1]){
-                                output6 +=" -- Root has no parent in BSTree"
-                            }else{
-                                output6+= " -- Not Found in BSTree"
+                            try{
+                                if(tree.rootNode.data === inputs[1]){
+                                    output6 +=" -- Root has no parent in BSTree"
+                                }else{
+                                    output6+= " -- Not Found in BSTree"
+                                }
+                            }catch{
+                                
+                               output+= " -- Not Found in BSTree"
+                                
                             }
+                            
                         }else{
-                            if(tree.rootNode.data.itemId === parseInt(inputs[1])){
-                                output6 +=" -- Root has no parent in BSTree"
-                            }else{
-                                output6+= " -- Not Found in BSTree"
+                            try{
+                                if(tree.rootNode.data.itemId === parseInt(inputs[1])){
+                                    output6 +=" -- Root has no parent in BSTree"
+                                }else{
+                                    output6+= " -- Not Found in BSTree"
+                                }
+                            }catch{
+                                
+                                output+= " -- Not Found in BSTree"
+                            
                             }
+                            
                         }
                         
                     }
