@@ -153,13 +153,13 @@ export class QueueMain{
 
 export class Queue{
 
-    data:number[] = [];
+    data:any[] = [];
 
     makeEmpty(){
         this.data.length = 0;
     }
 
-    enqueue(num:number){
+    enqueue(num:any){
         this.data.push(num);
     }
 
