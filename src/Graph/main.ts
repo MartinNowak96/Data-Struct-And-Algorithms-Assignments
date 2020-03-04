@@ -51,11 +51,17 @@ export class GraphMain{
                         console.error("Error - full: unable to add undirected edge")
                     }
                     break;
+                case "?":
+                    if(graph.vertexExists(inputs[1])){
+                        console.log("VertexExists("+ inputs[1]+") -- true")
+                    }else{
+                        console.log("VertexExists("+ inputs[1]+ ") -- false")
+                    }
                 case "!":
                     if(graph.edgeExists(inputs[1], inputs[2])){
-                        console.log("EdgeEcists("+ inputs[1]+"," + inputs[2]+") -- true")
+                        console.log("EdgeExists("+ inputs[1]+"," + inputs[2]+") -- true")
                     }else{
-                        console.log("EdgeEcists("+ inputs[1]+"," + inputs[2]+") -- false")
+                        console.log("EdgeExists("+ inputs[1]+"," + inputs[2]+") -- false")
                     }
                     break;
                 case "w":
