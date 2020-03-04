@@ -8,7 +8,7 @@ export class GraphMain{
     constructor(){
         let fileContent
         try {
-            fileContent = fs.readFileSync("src/data/graph/input1.txt", 'utf8');
+            fileContent = fs.readFileSync("src/data/graph/input2.txt", 'utf8');
         } catch {
             console.log("Error - Unable to open input file.")
         }

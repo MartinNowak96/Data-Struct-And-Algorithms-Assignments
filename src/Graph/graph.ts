@@ -2,7 +2,7 @@ import { Queue } from "../queue";
 
 export class Graph{
 
-    vertices = {};
+    vertices:{ [id: string]: VertexNode; } = {};
     addVertex(v:string){
         let node = new VertexNode(v);
         this.vertices[v] = node;
@@ -48,10 +48,10 @@ export class Graph{
     }
 
     isMarked(vertex:string):boolean{
-        return this.vertices[vertex].isMarked
+        return this.vertices[vertex].mark
     }
     markVertex(vertex:string):void{
-        this.vertices[vertex].isMarked = true;
+        this.vertices[vertex].mark = true;
     }
 
     depthFirstSearch(start:string, end:string, path:Queue){
@@ -154,7 +154,7 @@ export class Graph{
 export class VertexNode{
     name:string;
     mark:boolean = false;
-    edges = {};
+    edges:{ [id: string]: EdgeNode; } = {};
     constructor(name:string){
         this.name =name;
     }
