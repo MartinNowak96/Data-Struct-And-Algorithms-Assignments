@@ -8,7 +8,7 @@ export class GraphMain{
     constructor(){
         let fileContent
         try {
-            fileContent = fs.readFileSync("src/data/graph/input2.txt", 'utf8');
+            fileContent = fs.readFileSync("src/data/graph/input5.txt", 'utf8');
         } catch {
             console.log("Error - Unable to open input file.")
         }
@@ -97,14 +97,14 @@ export class GraphMain{
                             output = output + "No path found";
                             console.log(output)
                         }else{
-                            output = output +"{";
+                            output = output +"{ ";
                             while(!visitedQ.isEmpty()){
                                 output= output + visitedQ.getFront() +  " ";
                                 visitedQ.dequeue();
                             }
                             output = output +"}";
                         }
-
+                        console.log(output)
                     }catch{
                         console.error("DFS("+ inputs[1] +"," + inputs[2] +") -- Error: vertex not found" )
                     }

@@ -64,9 +64,10 @@ export class Graph{
             }else{
                 path.enqueue(vertex);
                 this.markVertex(vertex);
-                for(let edge in this.vertices[vertex]){
-                    if(edge === vertex){
+                for(let edge in this.vertices[vertex].edges){
+                    if(edge === end){
                         found = true;
+                        break;
                     }else{
                         recursion(edge);
                     }
@@ -78,6 +79,7 @@ export class Graph{
                 
         }
         recursion(start);
+        this.clearMarks()
         
 
     }
