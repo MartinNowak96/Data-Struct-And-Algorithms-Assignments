@@ -54,7 +54,31 @@ export class Graph{
         this.vertices[vertex].isMarked = true;
     }
 
-    depthFirstSearch(start:string, end:string, path:string[]){
+    depthFirstSearch(start:string, end:string, path:Queue){
+        
+        let found = false;
+        let recursion = (vertex:string)=>{
+            
+            if(this.isMarked(vertex)){
+                
+            }else{
+                path.enqueue(vertex);
+                this.markVertex(vertex);
+                for(let edge in this.vertices[vertex]){
+                    if(edge === vertex){
+                        found = true;
+                    }else{
+                        recursion(edge);
+                    }
+                }
+                if(!found){
+                    path.dequeue();
+                }
+            }  
+                
+        }
+        recursion(start);
+        
 
     }
 
@@ -114,8 +138,8 @@ export class Graph{
 			
 			for(let edgeProp in vptr.edges)
 			{
-                let eptr = vptr.edges[edgeProp];
-				output += eptr.destination.vname  + eptr.weight + " ";
+                let eptr:EdgeNode = vptr.edges[edgeProp];
+				output += eptr.destination.name  + eptr.weight + " ";
 				eptr = eptr.nextEdge;
 			}
             
@@ -137,11 +161,11 @@ export class VertexNode{
 }
 
 export class EdgeNode{
-    destinqtion:VertexNode;
+    destination:VertexNode;
     weight:number;
     nextEdge:EdgeNode;
     constructor(destination:VertexNode,weight:number){
-        this.destinqtion =destination;
+        this.destination =destination;
         this.weight =weight;
     }
 }

@@ -10,11 +10,12 @@
 import {LinkedListMain} from './linkedList';
 import { QueueMain } from './queue';
 import { BinarySearchTreeMain } from './BinarySearchTree/main';
+import { GraphMain } from './Graph/main';
 
 ( ()=>{
 
     //new LinkedListMain().run();
     //new QueueMain().run();
-    new BinarySearchTreeMain();
-
+    //new BinarySearchTreeMain();
+    new GraphMain();
 })()                                                                  
