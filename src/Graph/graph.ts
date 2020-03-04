@@ -67,6 +67,7 @@ export class Graph{
                 for(let edge in this.vertices[vertex].edges){
                     if(edge === end){
                         found = true;
+                        path.enqueue(vertex);
                         break;
                     }else{
                         recursion(edge);
