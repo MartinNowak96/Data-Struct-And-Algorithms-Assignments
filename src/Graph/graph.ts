@@ -40,6 +40,20 @@ export class Graph{
         }
     }
 
+    getToVertices(v:string, q:Queue){
+        let edgesDict = this.vertices[v].edges;
+        for(let prop in edgesDict){
+            q.enqueue(prop);
+        }
+    }
+
+    isMarked(vertex:string):boolean{
+        return this.vertices[vertex].isMarked
+    }
+    markVertex(vertex:string):void{
+        this.vertices[vertex].isMarked = true;
+    }
+
     depthFirstSearch(start:string, end:string, path:string[]){
 
     }
@@ -64,15 +78,27 @@ export class Graph{
                 found = true;
                 visitedQ.enqueue(vertex);
             }else{
-                if(this.is){
+                if(this.isMarked(vertex)){
+                    this.markVertex(vertex);
+                    visitedQ.enqueue(vertex);
+                    this.getToVertices(vertex, adjQ)
 
+                    while(!adjQ.isEmpty()){
+                        item = adjQ.getFront();
+                        adjQ.dequeue();
+                        if(this.isMarked(item)){
+                            q.enqueue(item)
+                        }
+                    }
                 }
             }
 
-        }while(!q.isEmpty() && !found)
+        }while(!q.isEmpty() && !found);//from do while
 
         if(!found){
-
+            while(!visitedQ.isEmpty()){
+                visitedQ.dequeue();
+            }
         }
     }
 
