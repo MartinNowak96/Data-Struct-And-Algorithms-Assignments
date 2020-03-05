@@ -128,6 +128,7 @@ export class GraphMain{
                                 visitedQ.dequeue();
                             }
                             output = output +"}";
+                            console.log(output)
                         }
 
                     }catch{

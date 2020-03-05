@@ -80,15 +80,18 @@ export class Graph{
                     
                 }
                 if(!found){
-                    path.data.splice(path.data.length -1,1);
+                    //path.data.splice(path.data.length -1,1);
                 }
             }  
                 
         }
-        if(!found){
-
-        }
+        
         recursion(start);
+        if(!found){
+            while(!path.isEmpty()){
+                path.dequeue()
+            }
+        }
         this.clearMarks()
         
 
@@ -96,8 +99,8 @@ export class Graph{
 
     breadthFirstSearch(startVertex:string,endVertex:string, visitedQ:Queue){
         
-        let q:Queue;
-        let adjQ:Queue;
+        let q:Queue = new Queue();
+        let adjQ:Queue = new Queue();
         if(this.vertexExists(startVertex) ===undefined || this.vertexExists(endVertex) === undefined){
             console.error("VertexNotFound");
         }
@@ -114,7 +117,7 @@ export class Graph{
                 found = true;
                 visitedQ.enqueue(vertex);
             }else{
-                if(this.isMarked(vertex)){
+                if(!this.isMarked(vertex)){
                     this.markVertex(vertex);
                     visitedQ.enqueue(vertex);
                     this.getToVertices(vertex, adjQ)
@@ -122,7 +125,7 @@ export class Graph{
                     while(!adjQ.isEmpty()){
                         item = adjQ.getFront();
                         adjQ.dequeue();
-                        if(this.isMarked(item)){
+                        if(!this.isMarked(item)){
                             q.enqueue(item)
                         }
                     }
