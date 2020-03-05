@@ -56,6 +56,9 @@ export class Graph{
 
     depthFirstSearch(start:string, end:string, path:Queue){
         
+        if(!this.vertexExists(end) || !this.vertexExists(start)){
+            return "error"
+        }
         let found = false;
         let recursion = (vertex:string)=>{
             
@@ -65,19 +68,25 @@ export class Graph{
                 path.enqueue(vertex);
                 this.markVertex(vertex);
                 for(let edge in this.vertices[vertex].edges){
-                    if(edge === end){
-                        found = true;
-                        path.enqueue(vertex);
-                        break;
-                    }else{
-                        recursion(edge);
+                    if(!found){
+                        if(edge === end){
+                            found = true;
+                            path.enqueue(end);
+                            break;
+                        }else{
+                            recursion(edge);
+                        }
                     }
+                    
                 }
                 if(!found){
-                    path.dequeue();
+                    path.data.splice(path.data.length -1,1);
                 }
             }  
                 
+        }
+        if(!found){
+
         }
         recursion(start);
         this.clearMarks()

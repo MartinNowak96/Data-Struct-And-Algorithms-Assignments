@@ -92,10 +92,13 @@ export class GraphMain{
                     try{
                         let output = "DFS("+ inputs[1] +"," + inputs[2] +")";
                         let visitedQ = new Queue();
-                        graph.depthFirstSearch(inputs[1], inputs[2], visitedQ);
-                        if(visitedQ.isEmpty()){
-                            output = output + "No path found";
-                            console.log(output)
+                         let result = graph.depthFirstSearch(inputs[1], inputs[2], visitedQ);
+                        if(result == "error"){
+                            console.error( output + " -- Error: Vertex not found")
+                        }
+                        else if(visitedQ.isEmpty()){
+                            output = output + " No path found";
+                            console.error(output)
                         }else{
                             output = output +"{ ";
                             while(!visitedQ.isEmpty()){
@@ -103,8 +106,9 @@ export class GraphMain{
                                 visitedQ.dequeue();
                             }
                             output = output +"}";
+                            console.log(output)
                         }
-                        console.log(output)
+                        
                     }catch{
                         console.error("DFS("+ inputs[1] +"," + inputs[2] +") -- Error: vertex not found" )
                     }
@@ -115,8 +119,8 @@ export class GraphMain{
                         let visitedQ = new Queue();
                         graph.breadthFirstSearch(inputs[1], inputs[2], visitedQ);
                         if(visitedQ.isEmpty()){
-                            output = output + "No path found";
-                            console.log(output)
+                            output = output + " No path found";
+                            console.warn(output)
                         }else{
                             output = output +"{";
                             while(!visitedQ.isEmpty()){
