@@ -8,7 +8,7 @@ export class GraphMain{
     constructor(){
         let fileContent
         try {
-            fileContent = fs.readFileSync("src/data/graph/input5.txt", 'utf8');
+            fileContent = fs.readFileSync("src/data/graph/input6.txt", 'utf8');
         } catch {
             console.log("Error - Unable to open input file.")
         }
@@ -57,6 +57,7 @@ export class GraphMain{
                     }else{
                         console.log("VertexExists("+ inputs[1]+ ") -- false")
                     }
+                    break;
                 case "!":
                     if(graph.edgeExists(inputs[1], inputs[2])){
                         console.log("EdgeExists("+ inputs[1]+"," + inputs[2]+") -- true")
@@ -67,7 +68,11 @@ export class GraphMain{
                 case "w":
                     try{
                         let w = graph.weightIs(inputs[1], inputs[2]);
-                        console.log("WeightIs("+inputs[1] +"," + inputs[2]+") -- " + w);
+                        if(w){
+                            console.log("WeightIs("+inputs[1] +"," + inputs[2]+") -- " + w);
+                        }else{
+                            console.error("WeightIs("+inputs[1] +"," + inputs[2]+") -- Error:edge not found" );
+                        }
                     }catch{
                         console.error("Error: vertex not found or edge not found")
                     }
@@ -75,17 +80,17 @@ export class GraphMain{
                     
                 case "m"://mark
                     try{
-                        console.log("MarkVertex("+ inputs[1] +")");
                         graph.markVertex(inputs[1])
+                        console.log("MarkVertex("+ inputs[1] +")");
                     }catch{
-                        console.error("Error: vertex not found");
+                        console.error("MarkVertex("+ inputs[1] +") -- " + "Error: vertex not found");
                     }
                     break;
                 case "i":
                     try{
                         console.log("IsMarked(" + inputs[1]+ ") --" + graph.isMarked(inputs[1]))
                     }catch{
-                        console.log("Error: vertex not found")
+                        console.error("IsMarked(" + inputs[1]+ ") --" + "Error: vertex not found")
                     }
                     break;
                 case "s":
@@ -137,6 +142,13 @@ export class GraphMain{
                     break;
                 case "p":
                     graph.print();
+                    break;
+                case "e":
+                    console.log("ClearMarks()");
+                    graph.clearMarks();
+                    break;
+                case "g":
+                    graph.getGetToVertices(inputs[1]);
                     break;
                 case "~":
                     graph = undefined;

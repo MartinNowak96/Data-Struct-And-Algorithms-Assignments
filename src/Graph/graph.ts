@@ -141,6 +141,24 @@ export class Graph{
         }
     }
 
+    getGetToVertices(vertex:string){
+        if(this.vertices[vertex]){
+
+            if(Object.keys(this.vertices[vertex].edges).length >0){
+                let output = "GetToVertices("+ vertex +") -- { ";
+                for(let key in this.vertices[vertex].edges){
+                    output += key +" ";
+                }
+                output += "}";
+                console.log(output)
+            }else{
+                console.log("GetToVertices("+ vertex +") -- No adjacent vertices found"  )
+            }
+        }else{
+            console.error("GetToVertices("+ vertex +") -- Error: vertex not found");
+        }
+    }
+
     print(){
         console.log("******************************");
         console.log("Vertex : Adjacent Vertices")
