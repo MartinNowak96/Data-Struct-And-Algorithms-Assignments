@@ -100,6 +100,8 @@ export class StackMain {
                     }
                     break;
                 case "d":
+                    stack = undefined;
+                    console.log("~Stack()")
                     break;
 
             }
